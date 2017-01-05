@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" src="../js/aes.js"></script>
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="icon" type="image/png" href="../css/favicon.png" />
+<script type="text/javascript">
+var encrypted = CryptoJS.AES.encrypt("", "Secret Passphrase");
+var decrypted = CryptoJS.AES.decrypt(encrypted, "Secret Passphrase").toString(CryptoJS.enc.Utf8);
+var zoomed;
+var canvas;
+var context;
+var PF;
+var openPrevPage;
+var openNextPage;
+var currPageNumber;
+var render;
+
+var pdfData = "%PDF%";
+
+function o(s) {
+	return document.getElementById(s);
+}
+
+function decrypt(p) {
+	try {
+		var dec = CryptoJS.AES.decrypt(pdfData, p).toString(CryptoJS.enc.Utf8);
+		if(dec != "") {
+			o("encrypted").style.opacity = "1";
+			o("copy").style.visibility = "visible";
+			o("alert").innerHTML = "";
+			o("alert").outerHTML = "";
+			o("viewer").style.visibility = "visible";
+			render(atob(dec));
+		} else {
+			o("decryption-result").innerHTML = "<strong>%WRONGCODE%</strong>";
+		}	
+	} catch(e) {
+		o("decryption-result").innerHTML = "<strong>%WRONGCODE%</strong>";
+	}
+}
+
+function rerender() {
+	sc = 2;
+	openPage(PF,1);
+	//o("viewer").style.width = $('#canvas').width() + "px";
+	o("viewer").style.display = "inline-block";
+}
+
+function trydec() {
+	try {
+		var dec = CryptoJS.AES.decrypt(pdfData, "").toString(CryptoJS.enc.Utf8);
+		if(dec != "") {
+			o("encrypted").style.opacity = "1";
+			o("alert").innerHTML = "";
+			o("alert").outerHTML = "";
+			o("viewer").style.visibility = "visible";
+			render(atob(dec));
+		} else {
+			o("alert").style.visibility = "visible";
+		}	
+	} catch(e) {
+		o("alert").style.visibility = "visible";
+	}	
+}
+
+</script>
+<link href='https://fonts.googleapis.com/css?family=PT+Serif:400,400italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="%DESCRIPTION%">
+    <meta name="author" content="%AUTHOR%">
+    <meta name="keywords" content="%TAGS%">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+	<title>%TITLE%</title>
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+	<script src="../js/pdfjs/pdf.js"></script>
+  	<script src="../js/pdfjs/pdf.worker.js"></script>
+	<style type="text/css">
+		@font-face {
+        	font-family: 'hardpixel';
+        	src: url(../fonts/hardpixel.otf);
+        	font-style: normal;
+    	}	   			
+
+		.jumbotron {
+			padding: 0.2em;
+			font-family: hardpixel;
+			font-style: normal;
+			font-weight: normal;
+			color: #000;
+			overflow: visible;
+		}
+
+		.jumbotron h2 {
+			font-family: hardpixel;			
+		}
+
+		body {
+			font-family: hardpixel;
+			background-image: url('../css/background.png');
+		}
+	</style>
+
+<style type="text/css">
+
+#alert {
+	visibility: hidden;
+}
+
+#edmi {
+	border-bottom-style: dashed;
+	border-bottom-width: 1px;
+	cursor: pointer;
+}
+
+#encrypted {
+	opacity: 0;
+}
+
+#viewer {
+	visibility: hidden;
+	background-color: #333;
+}
+
+#ohfuck {
+	color: #aaa;
+}
+
+#created-by {
+	color: #aaa;
+}
+
+#canvas {
+	border-radius: 6px;
+}
+
+#secret-passphrase {
+	font-family: Sans;
+}
+
+#sometext {
+	margin-bottom: 0;
+}
+
+</style>
+<title>%CONDENSEDHEADER%</title>
+</head>
+<body onload="trydec()">
+    <nav class="navbar navbar-static-top navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+        	<a class="navbar-brand" href="../index.html">In Dies Aura Mental</a><span class="navbar-brand">&rarr; %TITLE%</span>
+        </div>
+      </div>
+    </nav>
+	<div class="container">
+    	<div id="alert" class="alert alert-warning alert-dismissible" role="alert">
+  			Страница доступна только для тех, кто знает волшебный код от нее
+  			<div class="row" style="margin-top: 0.4em;margin-bottom: 0.6em;">
+  				<div class="col-lg-4">
+    			<div class="input-group">
+					<input type="password" class="form-control" id="secret-passphrase" placeholder="Волшебный код" />
+					<span class="input-group-btn">
+					<button class="btn btn-default form-control" onclick="decrypt(o('secret-passphrase').value)"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+					</span>
+				</div>
+				</div>
+			</div>
+			<p id="decryption-result"></p><p>Подробнее про то, где взять волшебный код, можно узнать <a href="../mc.html">здесь</a></p>
+		</div>	
+			<div class="jumbotron" id="viewer">
+				<h2 id="ohfuck">%UPDATED%</h2>
+				<div><canvas id="canvas" ondblclick="rerender()"></canvas></div>
+				<script type="text/javascript" src="../js/viewer.js"></script>
+				<nav>
+    					<button class="btn btn-lg" href="javascript:void" onclick="openPrevPage()"><<</button>
+    					<button class="btn btn-lg pull-right" href="javascript:void" onclick="openNextPage()">>></button>
+				</nav>
+				<p><div><span class="label label-default">%COMMIT_CHANGES%</span></div></p>
+			</div>
+<div id="encrypted">
+
+</div>
+	</div>
+
+<div id="copy" style="text-align:center;margin-bottom:1em;visibility:hidden;">(C) In Dies Aura Mental</div>
+
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+	<script async defer src="https://buttons.github.io/buttons.js"></script>
+	<script type="text/javascript">
+		zoomed = true;
+		canvas = document.getElementById('canvas');
+		context = canvas.getContext('2d');
+		PF;
+		var openPrevPage;
+		var openNextPage;
+		currPageNumber = 0;
+	</script>
+</body>
+</html>

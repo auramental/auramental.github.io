@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="edmi">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="css/favicon.png" />
+  <title>In Dies Aura Mental</title>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+
+  <style type="text/css">
+    @font-face {
+        font-family: 'hardpixel';
+        src: url(fonts/hardpixel.otf);
+        font-style: normal;
+    }
+
+    body {
+      padding-top: 64px;
+      font-family: hardpixel;
+      font-size: 18pt;
+      background-image: url('css/background.png');
+    }
+
+    .jumbotron {
+      padding: 0.2em;
+      font-family: 'PT Serif';
+      font-style: normal;
+      font-weight: normal;
+      display: inline-block;
+    }
+
+    .jumbotron h2 {
+      font-family: 'PT Sans';     
+    }
+  </style>
+  <script type="text/javascript">
+    function getTree() {
+      var tree = JSON.parse("%INDEX%");
+      return tree;
+    }
+  </script>
+  
+</head>
+<body onload="">
+    <nav class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">In Dies Aura Mental<sup>&nbsp;<span class="label label-success">notes</span></sup></a>
+        </div>
+
+    <p class="navbar-btn pull-right">
+<a class="github-button" href="https://github.com/auramental/auramental.github.io/subscription" data-icon="octicon-eye" aria-label="Watch auramental/auramental.github.io on GitHub">Watch</a></p>
+        
+      </div>
+    </nav>
+
+    <div class="container">      
+      <table class="table">
+      <thead>
+        <tr><td>Note</td><td>Date</td></tr>
+      </thead>
+      <tbody>
+        <tr><td class="short-name"><a href="data/the_very_first_note.html">Самая первая запись</a></td><td>5/1/2017</td></tr><tr><td><a href='archive.html'>...</td><td></td></tr>
+      </tbody>                                      
+      </table>
+    </div> 
+
+
+
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/bootstrap-treeview.js"></script>
+<script type="text/javascript">
+$( document ).ready(function() {
+  $('#tree').treeview({data: getTree()});
+});
+</script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+
+</html>
