@@ -1,0 +1,59 @@
+@font-face {
+    font-family: 'hardpixel';
+    src: url(../fonts/hardpixel.otf);
+    font-style: normal;
+}	   			
+
+.jumbotron {
+	font-family: hardpixel;
+	font-style: normal;
+	font-weight: normal;
+	color: #000;
+	overflow: visible;
+	padding-top: 1em !important;
+	padding-bottom: 1em !important;
+}
+
+.jumbotron h2 {
+	font-family: hardpixel;			
+}
+
+body {
+	font-family: hardpixel;
+	padding-top: 64px;
+	background-image: url('background.png');
+}
+
+#alert {
+	visibility: hidden;
+}
+
+#encrypted {
+	opacity: 0;
+}
+
+#viewer {
+	visibility: hidden;
+	background-color: #333;
+}
+
+#ohfuck {
+	color: #aaa;
+}
+
+#created-by {
+	color: #aaa;
+}
+
+#canvas {
+	border-radius: 6px;
+}
+
+#secret-passphrase {
+	font-family: Sans;
+}
+
+#navbar {
+	visibility: visible;
+	font-family: 'hardpixel';
+}

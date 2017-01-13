@@ -1,0 +1,79 @@
+@font-face {
+    font-family: 'hardpixel';
+    src: url(../fonts/hardpixel.otf);
+    font-style: normal;
+}	   			
+
+.jumbotron {
+	margin: 0 !important;
+	padding: 0.1em !important;
+	font-family: hardpixel;
+	font-style: normal;
+	font-weight: normal;
+	overflow: visible;
+	position: absolute;
+	background-color: transparent !important;
+	left: 0;
+	top: 0;
+	width: 100em;
+}
+
+.jumbotron h2 {
+	font-family: hardpixel;		
+}
+
+body {
+	font-family: hardpixel;
+}
+
+button {
+	font-size: 10em !important;
+	width: 2em;
+	height: 2em;
+	padding-bottom: 0.3em !important;
+	background-color: transparent;
+	outline: none !important;
+	box-shadow: none !important;
+}
+
+button:hover {
+	border-style: solid !important;
+	border-width: 16px;
+	border-color: #eee;
+	border-radius: 32px;
+}
+
+#alert {
+	visibility: hidden;
+}
+
+#encrypted {
+	opacity: 0;
+}
+
+#viewer {
+	visibility: hidden;
+	background-color: #333;
+}
+
+#ohfuck {
+	color: #aaa;
+	margin-left: 1em;
+}
+
+#created-by {
+	color: #aaa;
+}
+
+#canvas {
+	border-radius: 6px;
+}
+
+#secret-passphrase {
+	font-family: Sans;
+}
+
+#navbar {
+	visibility: hidden;
+	display: none;
+}

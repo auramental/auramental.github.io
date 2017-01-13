@@ -6,8 +6,6 @@
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="icon" type="image/png" href="../css/favicon.png" />
 <script type="text/javascript">
-var encrypted = CryptoJS.AES.encrypt("", "Secret Passphrase");
-var decrypted = CryptoJS.AES.decrypt(encrypted, "Secret Passphrase").toString(CryptoJS.enc.Utf8);
 var zoomed;
 var canvas;
 var context;
@@ -64,12 +62,13 @@ function trydec() {
 		o("alert").style.visibility = "visible";
 	}	
 }
-
 </script>
 <link href='https://fonts.googleapis.com/css?family=PT+Serif:400,400italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" media="only screen and (max-width: 800px)" href="../css/page-mobile.css" />
+	<link rel="stylesheet" media="only screen and (min-width: 801px)" href="../css/page.css" />
     <meta name="description" content="%DESCRIPTION%">
     <meta name="author" content="%AUTHOR%">
     <meta name="keywords" content="%TAGS%">
@@ -79,78 +78,11 @@ function trydec() {
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
 	<script src="../js/pdfjs/pdf.js"></script>
   	<script src="../js/pdfjs/pdf.worker.js"></script>
-	<style type="text/css">
-		@font-face {
-        	font-family: 'hardpixel';
-        	src: url(../fonts/hardpixel.otf);
-        	font-style: normal;
-    	}	   			
-
-		.jumbotron {
-			padding: 0.2em;
-			font-family: hardpixel;
-			font-style: normal;
-			font-weight: normal;
-			color: #000;
-			overflow: visible;
-		}
-
-		.jumbotron h2 {
-			font-family: hardpixel;			
-		}
-
-		body {
-			font-family: hardpixel;
-			background-image: url('../css/background.png');
-		}
-	</style>
-
-<style type="text/css">
-
-#alert {
-	visibility: hidden;
-}
-
-#edmi {
-	border-bottom-style: dashed;
-	border-bottom-width: 1px;
-	cursor: pointer;
-}
-
-#encrypted {
-	opacity: 0;
-}
-
-#viewer {
-	visibility: hidden;
-	background-color: #333;
-}
-
-#ohfuck {
-	color: #aaa;
-}
-
-#created-by {
-	color: #aaa;
-}
-
-#canvas {
-	border-radius: 6px;
-}
-
-#secret-passphrase {
-	font-family: Sans;
-}
-
-#sometext {
-	margin-bottom: 0;
-}
-
-</style>
+	
 <title>%CONDENSEDHEADER%</title>
 </head>
 <body onload="trydec()">
-    <nav class="navbar navbar-static-top navbar-inverse">
+    <nav class="navbar navbar-fixed-top navbar-inverse" id="navbar">
       <div class="container">
         <div class="navbar-header">
         	<a class="navbar-brand" href="../index.html">In Dies Aura Mental</a><span class="navbar-brand">&rarr; %TITLE%</span>
@@ -159,7 +91,7 @@ function trydec() {
     </nav>
 	<div class="container">
     	<div id="alert" class="alert alert-warning alert-dismissible" role="alert">
-  			Страница доступна только для тех, кто знает волшебный код от нее
+  			Страница доступна только для тех, кто знает волшебный код доступа от нее
   			<div class="row" style="margin-top: 0.4em;margin-bottom: 0.6em;">
   				<div class="col-lg-4">
     			<div class="input-group">

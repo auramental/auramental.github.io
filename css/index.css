@@ -1,0 +1,27 @@
+@font-face {
+  font-family: 'hardpixel';
+  src: url('../fonts/hardpixel.otf');
+  font-style: normal;
+}
+
+body {
+  padding-top: 64px;
+  font-family: hardpixel;
+  font-size: 18pt;
+  background-image: url('background.png');
+}
+
+.jumbotron {
+  padding: 0.2em;
+  font-family: 'PT Serif';
+  font-style: normal;
+  font-weight: normal;
+  display: inline-block;
+}
+
+#gitwatch {
+  -webkit-transition: opacity 1s;
+  -moz-transition: opacity 1s;
+  -o-transition: opacity 1s;
+  transition: opacity 1s;      
+}
